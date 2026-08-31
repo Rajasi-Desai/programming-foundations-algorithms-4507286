@@ -4,7 +4,12 @@
 
 
 def gcd(a, b):
-    pass
+    r = a%b
+    while(r != 0):
+        a = b
+        b = r
+        r = a%b
+    return b
 
 
 # try out the function with a few examples
