@@ -33,10 +33,20 @@ class LinkedList(object):
     def insert(self, data):
         # TODO: insert a new node
         new_node = Node(data)
+        new_node.set_next(self.head)
+        self.head = new_node
+        self.count += 1
 
     def find(self, val):
         # TODO: find the first item with a given value
         item = self.head
+        #print("in here" + item)
+        
+        while(item != None):
+            if(item.get_data() == val):
+                return item
+
+            item = item.get_next()
 
         return None
 
@@ -44,6 +54,17 @@ class LinkedList(object):
         # TODO: delete an item at given index
         if idx > self.count-1:
             return
+
+        delNode = self.head
+        prevNode = None
+
+        for i in range(idx):
+            prevNode = delNode
+            delNode = delNode.get_next()
+
+        prevNode.set_next(delNode.get_next())
+        self.count -= 1
+
 
     def dump_list(self):
         tempnode = self.head
@@ -66,8 +87,8 @@ print("Finding item: ", itemlist.find(13))
 print("Finding item: ", itemlist.find(78))
 
 # delete an item
-# print("Item count: ", itemlist.get_count())
-# itemlist.deleteAt(3)
-# print("Item count: ", itemlist.get_count())
-# print("Finding item: ", itemlist.find(38))
-# itemlist.dump_list()
+print("Item count: ", itemlist.get_count())
+itemlist.deleteAt(3)
+print("Item count: ", itemlist.get_count())
+print("Finding item: ", itemlist.find(38))
+itemlist.dump_list()
