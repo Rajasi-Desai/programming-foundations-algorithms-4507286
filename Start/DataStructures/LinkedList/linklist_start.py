@@ -40,7 +40,6 @@ class LinkedList(object):
     def find(self, val):
         # TODO: find the first item with a given value
         item = self.head
-        #print("in here" + item)
         
         while(item != None):
             if(item.get_data() == val):
